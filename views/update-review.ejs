@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <html lang="en">
+    <head>
+      <meta charset="utf-8" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      />
+      <meta name="description" content="" />
+      <title>Steam Games</title>
+
+      <link
+        rel="canonical"
+        href="https://getbootstrap.com/docs/4.5/examples/album/"
+      />
+
+      <!-- Bootstrap core CSS -->
+      <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+        crossorigin="anonymous"
+      />
+
+      <link href="css/album.css" rel="stylesheet" />
+    </head>
+    <body>
+      <%- include('common/header'); -%>
+
+      <div class="container">
+        <h1 class="text-center">Create A New Game Review</h1>
+        <div class="row justify-content-md-center">
+          <div class="col-">
+            <form method="POST" action="/create-review">
+              <div class="form-group">
+                <label for="name">Game Title </label>
+                <input
+                  value="<%= review.title %>" 
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  name="title"
+                  placeholder="Enter Title"
+                />
+
+                <% if (errors['title']) { %>
+                <p style="color: red"><%= errors['title'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="name">Review</label>
+                <input
+                  value="<%= review.rating %>" 
+                  type="number"
+                  class="form-control"
+                  id="name"
+                  name="rating"
+                />
+
+                <% if (errors['points']) { %>
+                <p style="color: red"><%= errors['points'].message %></p>
+                <% } %>
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1">Select Reviewer</label>
+                <select
+                  value="<%= review.reviewer_id %>" 
+                  class="form-control"
+                  name="reviewer_id"
+                  id="exampleFormControlSelect1"
+                >
+                  <% reviewer.forEach( reviewer => { %>
+
+                  <option value="<%= reviewer._id %>"><%= reviewer.name %></option>
+
+                  <% }) %>
+                </select>
+              </div>
+
+             
+
+              <div class="form-group">
+   
+                
+                <% genre.forEach( genre => { %>
+               <div class="form-check form-check-inline">
+                <input
+                  name="genre"
+                  class="form-check-input"
+                  type="checkbox"
+                  <% if (review.genre.includes(genre._id)) {%>   checked <% } %> 
+                  id="inlineCheckbox2"
+                  value= "<%= genre._id %>"
+                />
+                <label class="form-check-label" for="inlineCheckbox2"><%= genre.name %></label>
+              </div>
+
+            <% }) %>
+
+
+             
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <%- include('common/footer'); -%>
+    </body>
+  </html>
+</html>

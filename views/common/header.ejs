@@ -1,0 +1,24 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/"> Steam Games </a>
+      <div class="navbar">
+        <div class="navbar-nav">
+          <a class="nav-link active" href="/">
+            Home <span class="sr-only">(current)</span>
+          </a>
+          <a class="nav-link" href="/search-review"> Search for Reviews </a>
+          <a class="nav-link" href="/reviewer"> Reviewers</a>
+          <a class="nav-link" href="/reviews"> Reviews</a>
+          <% if(user) { %>
+           <a class="nav-link" href="/saved-review.ejs">Saved Reviews</a>
+          <a class="nav-link" href="/create-review"> Write a Review </a>
+          <a class="nav-link" href="/logout"> <%= user.email %> (Click to Logout) </a> <%
+          }%> <% if(!user) { %>
+          <a class="nav-link" href="/login"> Login </a>
+          <a class="nav-link" href="/join"> Register </a>
+          <% } %>
+        </div>
+      </div>
+    </nav>
+  </header>
+  ;

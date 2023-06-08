@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <title>Steam Games</title>
+
+    
+
+    <link
+      rel="canonical"
+      href="https://getbootstrap.com/docs/4.5/examples/album/"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+
+    <link href="css/album.css" rel="stylesheet" />
+  </head>
+  <body>
+    <%- include('common/header'); -%>
+  <div class="container">
+    
+     <% if (message) {   %> 
+            <div class="row justify-content-md-center">
+              <div class="alert alert-primary" role="alert">
+                    <%= message %>
+              </div>
+            </div>
+
+      <% } %>
+    
+    <div class="row col-md-12 col-md-offset-2 custyle mx-auto">
+       
+    <h1 class="mx-auto"> Game Reviews  </h1>
+  
+  
+    <table class="table table-striped custab">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Points</th>
+
+        </tr>
+
+        <%  
+        
+          reviews.forEach(game => {
+            
+        %>
+
+            <tr>
+                <td><%=  game.title  %></td>
+                <td><%=  game.description  %></td>
+                <td><%=  game.price  %></td>
+                <td><%=  game.rating  %></td>
+                <td class="text-center"><a class='btn btn-info btn-xs'><span class="glyphicon glyphicon-edit"></span> Edit</a> 
+                <a  href="/reviews/delete/<%= game.id %>" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-remove"></span> Delete</a></td>
+            </tr>
+            
+         <%  
+          });
+         %>
+
+
+       
+    </thead>
+          
+    </table>
+    </div>
+    <div class="row col-md-12 col-md-offset-2 custyle mx-auto">
+    
+    
+    
+      <nav aria-label="Page navigation example">
+     
+     
+     
+        <ul class="pagination">
+
+          <% if (currentPage === 1) { %>  
+            <li class="page-item disabled"><a class="page-link" href="#">First</a></li>     
+          <% } else { %>  
+            <li class="page-item"><a class="page-link" href="/review">First</a></li>
+          <% } %>  
+        
+          <li class="page-item"><a class="page-link" href="/review?page=1">1</a></li>
+          <li class="page-item"><a class="page-link" href="/review?page=2">2</a></li>
+          <li class="page-item"><a class="page-link" href="/review?page=3">3</a></li>
+          <li class="page-item"><a class="page-link" href="/review?page=4">4</a></li>
+          <li class="page-item"><a class="page-link" href="/review?page=5">5</a></li>
+          <li class="page-item"><a class="page-link" href="/review?page=6">6</a></li>
+        
+          <% if (currentPage === numberOfPages) { %>  
+            <li class="page-item disabled"><a class="page-link" href="">Last</a></li>     
+          <% } else { %>  
+            <li class="page-item"><a class="page-link" href="/review?page=<%= numberOfPages %>">Last</a></li>
+          <% } %>  
+        
+        </ul>
+  </nav>
+    </div>
+    
+    <%- include('common/footer') -%>
+  </body>
+</html>
