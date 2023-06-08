@@ -1,7 +1,7 @@
 # Database Project
 ## Requirements:
 
--Clone or install this repo
+-Clone or install this repo in https://github.com/DanielRusanov/database_project.git
 -Install the dependencies:
     -"npm install"
     -install node app.js
